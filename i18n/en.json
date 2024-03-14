@@ -31,6 +31,10 @@
         "join-community": "Join community",
         "create-community": "Create community"
       },
+      "community-search": {
+        "search-placeholder": "Type a community name to search...",
+        "no-results": "No results found.",
+        "available-communities": "Available communities"
       }
     }
   }
