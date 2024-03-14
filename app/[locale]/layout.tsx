@@ -9,6 +9,7 @@ import { locales } from '@/middleware';
 import { AxiomWebVitals } from 'next-axiom';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ThemeProvider } from '@/components/providers/theme-providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,15 +32,19 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      {/* Enable production logging */}
-      <AxiomWebVitals />
-      <Analytics />
-      <SpeedInsights />
+    <html lang={locale} suppressHydrationWarning>
+      <body className={inter.className}>
+        {/* Enable production logging */}
+        <AxiomWebVitals />
+        <Analytics />
+        <SpeedInsights />
 
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <body className={inter.className}>{children}</body>
-      </NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }

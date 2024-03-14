@@ -3,5 +3,14 @@
     "home": {
       "title": "Gosho"
     }
+  },
+  "components": {
+    "client": {
+      "theme-switcher": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      }
+    }
   }
 }
