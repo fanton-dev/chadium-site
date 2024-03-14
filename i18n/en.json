@@ -8,6 +8,11 @@
       "description": "Log back in or sign up to get started with your self-improvement journey.",
       "by-signing-in-you-agree-to-our": "By signing in, you agree to our",
       "terms-of-service": "Terms of Service"
+    },
+    "dashboard-page": {
+      "strength": "Strength",
+      "knowledge": "Knowledge",
+      "consistency": "Consistency"
     }
   },
   "components": {
