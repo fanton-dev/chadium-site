@@ -5,14 +5,12 @@
     },
     "login-page": {
       "title": "Glad to see you!",
-      "description": "Log back in or sign up to get started with your self-improvement journey.",
+      "description": "Log back in or sign up to get the latest news and updates from your communities.",
       "by-signing-in-you-agree-to-our": "By signing in, you agree to our",
       "terms-of-service": "Terms of Service"
     },
     "dashboard-page": {
-      "strength": "Strength",
-      "knowledge": "Knowledge",
-      "consistency": "Consistency"
+      "add-new-community": "Add new community"
     }
   },
   "components": {
