@@ -1,7 +1,7 @@
 'use client';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { Label } from '@/components/client/label/label';
+import { Label } from '@/components/ui/label';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import { useTranslations } from 'next-intl';
 
