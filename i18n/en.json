@@ -2,6 +2,12 @@
   "pages": {
     "home": {
       "title": "Gosho"
+    },
+    "login-page": {
+      "title": "Glad to see you!",
+      "description": "Log back in or sign up to get started with your self-improvement journey.",
+      "by-signing-in-you-agree-to-our": "By signing in, you agree to our",
+      "terms-of-service": "Terms of Service"
     }
   },
   "components": {
@@ -10,7 +16,15 @@
         "light": "Light",
         "dark": "Dark",
         "system": "System"
+      },
+      "login-form": {
+        "email": "Email",
+        "invalid-email-format": "Invalid email address.",
+        "submit": "Submit",
+        "or-continue-with": "or continue with",
+        "try-again": "Please, try again."
       }
+
     }
   }
 }
