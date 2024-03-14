@@ -6,6 +6,9 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/middleware';
+import { AxiomWebVitals } from 'next-axiom';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,6 +32,11 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      {/* Enable production logging */}
+      <AxiomWebVitals />
+      <Analytics />
+      <SpeedInsights />
+
       <NextIntlClientProvider locale={locale} messages={messages}>
         <body className={inter.className}>{children}</body>
       </NextIntlClientProvider>
