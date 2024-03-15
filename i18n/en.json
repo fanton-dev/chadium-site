@@ -14,6 +14,17 @@
     }
   },
   "components": {
+    "server": {
+      "navbar-user-controls": {
+        "preferences-popover": {
+          "get-started": "Get started",
+          "theme": "Theme"
+        }
+      },
+      "login-buttons": {
+        "get-started": "Get started"
+      }
+    },
     "client": {
       "theme-switcher": {
         "light": "Light",

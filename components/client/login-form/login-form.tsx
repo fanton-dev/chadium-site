@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import Link from 'next/link';
 import { CgSpinnerAlt } from 'react-icons/cg';
-import { FaGoogle } from 'react-icons/fa6';
+import { FaDiscord, FaGoogle } from 'react-icons/fa6';
 import { FaSignInAlt } from 'react-icons/fa';
 import * as process from 'process';
 import {
@@ -40,7 +40,6 @@ export function LoginForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    console.log(values);
     setIsLoading(false);
   }
 
@@ -69,7 +68,6 @@ export function LoginForm() {
           </Button>
         </form>
       </Form>
-
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
@@ -82,7 +80,19 @@ export function LoginForm() {
       </div>
       <Button variant="outline" type="button" disabled={isLoading} asChild>
         <Link
-          href={`${process.env.NEXT_PUBLIC_API_BASE}/api/v1/auth/login/google`}
+          href={`${process.env.NEXT_PUBLIC_API_BASE}/api/auth/login/discord`}
+        >
+          {isLoading ? (
+            <CgSpinnerAlt className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <FaDiscord className="mr-2 h-4 w-4" />
+          )}
+          Discord
+        </Link>
+      </Button>{' '}
+      <Button variant="outline" type="button" disabled={isLoading} asChild>
+        <Link
+          href={`${process.env.NEXT_PUBLIC_API_BASE}/api/auth/login/discord`}
         >
           {isLoading ? (
             <CgSpinnerAlt className="mr-2 h-4 w-4 animate-spin" />
