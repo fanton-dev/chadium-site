@@ -1,12 +1,16 @@
 import { getTranslations } from 'next-intl/server';
-import { ThemeSwitcher } from '@/components/client/theme-switcher/theme-switcher';
+import Image from 'next/image';
 
 export default async function Home() {
   const t = await getTranslations('pages.home');
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      gosho
-      <ThemeSwitcher />
+      <Image
+        src="/assets/images/logo/logo.png"
+        alt="CHADIUM Logo"
+        width={800}
+        height={800}
+      />
     </main>
   );
 }

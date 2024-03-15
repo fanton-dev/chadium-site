@@ -23,7 +23,7 @@ export default async function LoginPage() {
 
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
-              <p className="text-lg">Get strong. Get smart. Get consistent.</p>
+              <p className="text-lg">Stay connected with your community.</p>
               <footer className="text-sm">CHADIUM</footer>
             </blockquote>
           </div>
