@@ -4,7 +4,7 @@ import { useLocale } from 'next-intl';
 import { Logo } from '@/components/server/logo/logo';
 import { NavbarUserControls } from '@/components/server/navbar-user-controls/navbar-user-controls';
 
-export default async function RootLayout({
+export default async function UnauthenticatedLayout({
   children,
 }: Readonly<{
   children: ReactNode;

@@ -56,7 +56,7 @@ export async function getUser() {
   const bearerToken = await getBearerToken();
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}/api/v1/user/current`,
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/users/current`,
     {
       method: 'GET',
       headers: {

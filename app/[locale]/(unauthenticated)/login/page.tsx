@@ -4,11 +4,13 @@ import Link from 'next/link';
 import { LoginForm } from '@/components/client/login-form/login-form';
 import { Card } from '@/components/ui/card';
 import { useLocale } from 'next-intl';
+import { getUser } from '@/components/api-client/auth';
+import { redirect, RedirectType } from 'next/navigation';
 
 export default async function LoginPage() {
-  // if (await getUser()) {
-  //   redirect('/dashboard', RedirectType.replace);
-  // }
+  if (await getUser()) {
+    redirect('/dashboard', RedirectType.replace);
+  }
 
   const t = await getTranslations('pages.login-page');
   const locale = useLocale();
