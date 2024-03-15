@@ -41,7 +41,7 @@ export default async function RootLayout({
 
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <main className="min-h-[100vh]">{children}</main>
+            {children}
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

@@ -19,11 +19,11 @@ export default async function RootLayout({
           <Logo />
         </Link>
 
-        <div className="flex flex-row align-middle gap-2 place-self-end">
+        <div className="flex flex-row align-middle gap-2 place-self-end h-12">
           <NavbarUserControls user={user} className="" />
         </div>
       </nav>
-      {children}
+      <main className="min-h-[100vh] -mt-16">{children}</main>
     </>
   );
 }
