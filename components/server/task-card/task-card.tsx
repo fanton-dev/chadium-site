@@ -2,6 +2,11 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@/components/ui/hover-card';
 
 interface TaskCardProps {
   task: {
@@ -36,14 +41,29 @@ export async function TaskCard({ task }: TaskCardProps) {
         Assignees
         <div className="flex flex-row gap-1">
           {task.assignees.map((assignee) => (
-            <Avatar key={assignee.id}>
-              <AvatarImage
-                src={assignee.avatar}
-                alt={assignee.name}
-                className="w-8 h-8 rounded-full"
-              />
-              <AvatarFallback>{assignee.name[0]}</AvatarFallback>
-            </Avatar>
+            <HoverCard>
+              <HoverCardTrigger>
+                <Avatar key={assignee.id}>
+                  <AvatarImage
+                    src={assignee.avatar}
+                    alt={assignee.name}
+                    className="w-12 h-12 rounded-full"
+                  />
+                  <AvatarFallback>{assignee.name[0]}</AvatarFallback>
+                </Avatar>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-fit">
+                <div className="flex justify-between space-x-4">
+                  <Avatar>
+                    <AvatarImage src={assignee.avatar} alt={assignee.name} />
+                    <AvatarFallback>{assignee.name[0]}</AvatarFallback>
+                  </Avatar>
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-semibold">{assignee.name}</h4>
+                  </div>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
           ))}
         </div>
       </CardContent>
