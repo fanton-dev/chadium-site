@@ -19,6 +19,7 @@ import { FaSignInAlt } from 'react-icons/fa';
 import { FaX } from 'react-icons/fa6';
 import { ChangeEvent, useRef, useState } from 'react';
 import { getCommunityBanner } from '@/components/api-client/ai';
+import { useRouter } from 'next/navigation';
 
 interface CreateCommunityFormProps {
   onCancel: () => void;
@@ -28,6 +29,7 @@ export function CreateCommunityForm({ onCancel }: CreateCommunityFormProps) {
   const t = useTranslations('components.client.create-community-dialog');
   const locale = useLocale();
   const [image, setImageUrl] = useState<string | undefined>();
+  const router = useRouter();
 
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
@@ -95,9 +97,14 @@ export function CreateCommunityForm({ onCancel }: CreateCommunityFormProps) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const response = await createCommunity(values.name, values.description);
-    console.log(values);
-    console.log(response);
+    const response = await createCommunity(
+      values.name,
+      values.description,
+      values.color,
+      image as string,
+    );
+
+    router.push(`/${locale}/communities/${response.id}`);
   }
 
   function handleDescriptionChange(event: ChangeEvent<HTMLInputElement>) {
@@ -224,7 +231,7 @@ export function CreateCommunityForm({ onCancel }: CreateCommunityFormProps) {
               <FaX className="mr-2 h-4 w-4" /> {t('cancel')}
             </Button>
 
-            <Button type="submit" className="grow">
+            <Button type="submit" className="grow" disabled={!image}>
               <FaSignInAlt className="mr-2 h-4 w-4" /> {t('submit')}
             </Button>
           </div>

@@ -26,7 +26,12 @@ export async function getCommunities() {
   return undefined;
 }
 
-export async function createCommunity(name: string, description: string) {
+export async function createCommunity(
+  name: string,
+  description: string,
+  color: string,
+  image: string,
+) {
   const bearerToken = await getBearerToken();
 
   const response = await fetch(
@@ -36,8 +41,9 @@ export async function createCommunity(name: string, description: string) {
       headers: {
         'Accept-Language': locale,
         Authorization: bearerToken || '',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, description }),
+      body: JSON.stringify({ name, description, color, image }),
     },
   );
 
