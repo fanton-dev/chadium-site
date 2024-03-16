@@ -51,6 +51,18 @@
         "search-placeholder": "Type a community name to search...",
         "no-results": "No results found.",
         "available-communities": "Available communities"
+      },
+      "create-community-dialog": {
+        "name": "Name",
+        "name-placeholder": "Community name",
+        "description": "Description",
+        "description-placeholder": "Community description",
+        "color": "Color",
+        "cancel": "Cancel",
+        "submit": "Submit",
+        "too-short": "The field should contain at least {length} symbols.",
+        "too-long": "The field should contain at most {length} symbols.",
+        "regex-error": "The field does not match the requirements."
       }
     }
   }

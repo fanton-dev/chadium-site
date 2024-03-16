@@ -25,3 +25,21 @@ export async function getCommunities() {
 
   return undefined;
 }
+
+export async function createCommunity(name: string, description: string) {
+  const bearerToken = await getBearerToken();
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/communities`,
+    {
+      method: 'POST',
+      headers: {
+        'Accept-Language': locale,
+        Authorization: bearerToken || '',
+      },
+      body: JSON.stringify({ name, description }),
+    },
+  );
+
+  return await response.json();
+}
