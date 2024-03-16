@@ -1,8 +1,7 @@
 'use server';
 import { getBearerToken } from '@/components/api-client/auth';
-import { useLocale } from 'next-intl';
 
-const locale = useLocale();
+const locale = 'en';
 
 export async function getCommunities() {
   // Get current authentication
@@ -44,6 +43,23 @@ export async function createCommunity(
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name, description, color, image }),
+    },
+  );
+
+  return await response.json();
+}
+
+export async function getCommunity(id: string) {
+  const bearerToken = await getBearerToken();
+
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE}/api/communities/${id}`,
+    {
+      method: 'GET',
+      headers: {
+        'Accept-Language': locale,
+        Authorization: bearerToken || '',
+      },
     },
   );
 
