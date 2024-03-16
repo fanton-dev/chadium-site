@@ -60,6 +60,7 @@
         "color": "Color",
         "cancel": "Cancel",
         "submit": "Submit",
+        "is-required": "This field is required.",
         "too-short": "The field should contain at least {length} symbols.",
         "too-long": "The field should contain at most {length} symbols.",
         "regex-error": "The field does not match the requirements."

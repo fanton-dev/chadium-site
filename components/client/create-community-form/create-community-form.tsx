@@ -11,16 +11,14 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { toast } from '@/components/ui/use-toast';
-import { router } from 'next/client';
 import { RadioGroup } from '@radix-ui/react-radio-group';
 import { RadioGroupItem } from '@/components/ui/radio-group';
 import { createCommunity } from '@/components/api-client/community';
 import { Button } from '@/components/ui/button';
 import { FaSignInAlt } from 'react-icons/fa';
 import { FaX } from 'react-icons/fa6';
-import { useState } from 'react';
-import Image from 'next/image';
+import { ChangeEvent, useRef, useState } from 'react';
+import { getCommunityBanner } from '@/components/api-client/ai';
 
 interface CreateCommunityFormProps {
   onCancel: () => void;
@@ -29,9 +27,9 @@ interface CreateCommunityFormProps {
 export function CreateCommunityForm({ onCancel }: CreateCommunityFormProps) {
   const t = useTranslations('components.client.create-community-dialog');
   const locale = useLocale();
-  const [image, setImageUrl] = useState<string | undefined>(
-    '/assets/images/logo/logo.png',
-  );
+  const [image, setImageUrl] = useState<string | undefined>();
+
+  const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
   const config = {
     name: {
@@ -98,16 +96,27 @@ export function CreateCommunityForm({ onCancel }: CreateCommunityFormProps) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const response = await createCommunity(values.name, values.description);
+    console.log(values);
+    console.log(response);
+  }
 
-    if (response?.error) {
-      toast({
-        variant: 'destructive',
-        title: response.error,
-        description: t('try-again'),
-      });
-    } else {
-      router.push(`/${locale}/communities/${response.id}`);
+  function handleDescriptionChange(event: ChangeEvent<HTMLInputElement>) {
+    if (timeoutId.current) {
+      clearTimeout(timeoutId.current);
     }
+
+    if (!event.target.value) {
+      return;
+    }
+
+    timeoutId.current = setTimeout(async () => {
+      const generateImage = await getCommunityBanner(event.target.value);
+      if (generateImage) {
+        setImageUrl(generateImage);
+      }
+    }, 2000);
+
+    form.setValue('description', event.target.value);
   }
 
   return (
@@ -115,7 +124,7 @@ export function CreateCommunityForm({ onCancel }: CreateCommunityFormProps) {
       {/* Banner */}
       <div className="relative w-full h-72 mt-4 overflow-ellipsis">
         {image && (
-          <Image
+          <img
             className="absolute inset-0 flex flex-col w-full h-full object-cover"
             src={image}
             alt="Community banner"
@@ -166,8 +175,9 @@ export function CreateCommunityForm({ onCancel }: CreateCommunityFormProps) {
                 <FormLabel>{t('name')}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder={t('description-placeholder')}
                     {...field}
+                    placeholder={t('description-placeholder')}
+                    onChange={handleDescriptionChange}
                   />
                 </FormControl>
                 <FormMessage />
@@ -206,11 +216,15 @@ export function CreateCommunityForm({ onCancel }: CreateCommunityFormProps) {
           />
 
           <div className="flex gap-2">
-            <Button onClick={() => onCancel()} variant="secondary">
+            <Button
+              onClick={() => onCancel()}
+              variant="secondary"
+              className="grow"
+            >
               <FaX className="mr-2 h-4 w-4" /> {t('cancel')}
             </Button>
 
-            <Button type="submit">
+            <Button type="submit" className="grow">
               <FaSignInAlt className="mr-2 h-4 w-4" /> {t('submit')}
             </Button>
           </div>
