@@ -45,7 +45,7 @@ export async function getBearerToken() {
   const accessToken = await getAuth();
 
   if (!accessToken) {
-    return undefined;
+    return '';
   }
 
   return `Bearer ${accessToken.value}`;
