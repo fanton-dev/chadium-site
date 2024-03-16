@@ -20,7 +20,7 @@ export async function PostCard({ post }: PostCardProps) {
   return (
     <Card className="w-full transition hover:shadow-xl">
       {post.imageUrls.length > 0 && (
-        <CardHeader className="relative p-0 w-full aspect-video space-y-0 overflow-hidden rounded-t-xl justify-center items-center flex">
+        <CardHeader className="relative p-0 w-full aspect-video space-y-0 rounded-t-xl justify-center items-center flex">
           <Carousel
             className="w-full max-w-xs"
             opts={{
