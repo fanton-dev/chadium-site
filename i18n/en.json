@@ -23,6 +23,11 @@
       },
       "login-buttons": {
         "get-started": "Get started"
+      },
+      "navbar-links": {
+        "home": "Home",
+        "posts": "Posts",
+        "tasks": "Tasks"
       }
     },
     "client": {

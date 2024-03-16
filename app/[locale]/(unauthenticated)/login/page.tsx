@@ -8,12 +8,12 @@ import { getUser } from '@/components/api-client/auth';
 import { redirect, RedirectType } from 'next/navigation';
 
 export default async function LoginPage() {
-  if (await getUser()) {
-    redirect('/dashboard', RedirectType.replace);
-  }
-
   const t = await getTranslations('pages.login-page');
   const locale = useLocale();
+
+  if (await getUser()) {
+    redirect(`/${locale}/communities`, RedirectType.replace);
+  }
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-[100vh]">
